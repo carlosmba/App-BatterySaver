@@ -58,7 +58,10 @@ class HomeFragment : Fragment(), OnClickAppListener {
         }
 
         binding.btnStop.setOnClickListener { onClickForceCloseApp(mAdapter.getListApp()) }
-        binding.checkBoxAll.setOnClickListener { onClickCheckBoxAll() }
+        binding.checkBoxAll.setOnCheckedChangeListener { _, isChecked ->
+            onClickCheckBoxAll(isChecked)
+
+        }
         setupViewModel()
         setupRecyclerView()
 
@@ -116,8 +119,8 @@ class HomeFragment : Fragment(), OnClickAppListener {
 
     }
 
-    override fun onClickCheckBoxAll() {
-        mAdapter.toggleCheckBoxAll()
+    override fun onClickCheckBoxAll(isCheck : Boolean) {
+        mAdapter.toggleCheckBoxAll(isCheck)
     }
 
     override fun onStart() {

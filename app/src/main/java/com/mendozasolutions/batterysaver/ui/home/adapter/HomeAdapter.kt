@@ -47,9 +47,9 @@ class HomeAdapter(private val context : Context, private val listener : OnClickA
 
     fun getListApp() : List<App> = listApp.toList()
 
-    fun toggleCheckBoxAll(){
+    fun toggleCheckBoxAll(isCheck : Boolean){
         listApp.forEach { app ->
-            app.isCheck = !app.isCheck
+            app.isCheck = isCheck
         }
         notifyDataSetChanged()
     }
@@ -75,7 +75,7 @@ class HomeAdapter(private val context : Context, private val listener : OnClickA
 
         }
         fun setupListeners(app : App){
-            binding.checkBoxApp.setOnCheckedChangeListener { buttonView, isChecked ->
+            binding.checkBoxApp.setOnClickListener {
                 updateCheckBox(app)
             }
         }
