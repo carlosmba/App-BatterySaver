@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Battery saver</string>
+    <string name="title_home">Home</string>
+    <string name="title_profiles">Profiles</string>
+    <string name="title_settings">Settings</string>
+    <string name="btn_text_stop">Detener</string>
+    <string name="text_app_running">Apps en ejecución</string>
+</resources>

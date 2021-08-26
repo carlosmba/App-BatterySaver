@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:title="@string/title_home"
+        android:id="@+id/action_home"
+        android:icon="@drawable/ic_baseline_home"
+        app:showAsAction="never"/>
+    <item android:title="@string/title_profiles"
+        android:id="@+id/action_profiles"
+        android:icon="@drawable/ic_baseline_people"
+        app:showAsAction="never"/>
+    <item android:title="@string/title_settings"
+        android:icon="@drawable/ic_baseline_settings"
+        android:id="@+id/action_settings"
+        app:showAsAction="never"/>
+</menu>
