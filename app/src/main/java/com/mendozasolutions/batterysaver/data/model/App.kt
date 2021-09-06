@@ -2,7 +2,13 @@ package com.mendozasolutions.batterysaver.data.model
 
 import android.graphics.drawable.Drawable
 
-data class App(val photoDrawable : Drawable, val name : String,val packageName : String, val sourceDir : String, var isCheck : Boolean = true){
+data class App(
+    val photoDrawable : Drawable,
+    val name : String,
+    val packageName : String,
+    val lastTimeUsed : Long,
+    val sourceDir : String,
+    var isCheck : Boolean = true){
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -14,7 +20,4 @@ data class App(val photoDrawable : Drawable, val name : String,val packageName :
         return true
     }
 
-    override fun hashCode(): Int {
-        return packageName.hashCode()
-    }
 }

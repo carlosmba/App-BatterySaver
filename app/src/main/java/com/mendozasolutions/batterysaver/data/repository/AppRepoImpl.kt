@@ -5,11 +5,9 @@ import android.app.usage.UsageStats
 import android.app.usage.UsageStatsManager
 import android.content.Context
 import android.os.Build
-import android.os.Process
 import android.util.Log
 import androidx.annotation.RequiresApi
-import com.mendozasolutions.batterysaver.domain.repository.home.AppRepo
-import java.io.DataOutputStream
+import com.mendozasolutions.batterysaver.domain.repository.main.AppRepo
 
 class AppRepoImpl : AppRepo {
     val TAG = "HomeRepo"
@@ -26,14 +24,7 @@ class AppRepoImpl : AppRepo {
         )
     }
 
-    override fun killAppProcess(context : Context,packageName: String) {
-        val manager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-        Log.i(TAG, "Background Process $packageName")
-        manager.killBackgroundProcesses(packageName)
-        Log.i(TAG, "Closing background Process $packageName")
 
-
-    }
 
 
 }
