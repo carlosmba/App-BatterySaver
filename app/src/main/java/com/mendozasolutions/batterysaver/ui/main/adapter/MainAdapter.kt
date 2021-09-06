@@ -1,11 +1,8 @@
-package com.mendozasolutions.batterysaver.ui.home.adapter
+package com.mendozasolutions.batterysaver.ui.main.adapter
 
 import android.annotation.SuppressLint
-import android.app.ActivityManager
-import android.app.usage.UsageStats
 import android.content.Context
-import android.content.pm.ApplicationInfo
-import android.content.pm.PackageManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,17 +10,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mendozasolutions.batterysaver.databinding.AppItemBinding
 import com.mendozasolutions.batterysaver.R
 import com.mendozasolutions.batterysaver.core.BaseViewHolder
-import com.mendozasolutions.batterysaver.core.PackageHandle
 import com.mendozasolutions.batterysaver.data.model.App
-import com.mendozasolutions.batterysaver.ui.home.OnClickAppListener
+import com.mendozasolutions.batterysaver.ui.main.OnClickAppListener
 import java.text.SimpleDateFormat
 import java.util.*
 
-class HomeAdapter(private val context : Context, private val listener : OnClickAppListener) : RecyclerView.Adapter<BaseViewHolder<*>>() {
-
+class MainAdapter( private val listener : OnClickAppListener) : RecyclerView.Adapter<BaseViewHolder<*>>() {
+    private val TAG = "HomeAdapter"
     private var listApp = mutableListOf<App>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<*> {
-        return HomeViewHolder(LayoutInflater.from(context).inflate(R.layout.app_item, parent, false))
+        return HomeViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.app_item, parent, false))
 
     }
 
@@ -38,6 +34,7 @@ class HomeAdapter(private val context : Context, private val listener : OnClickA
     }
 
     override fun getItemCount(): Int = listApp.size
+    fun getListApp() : List<App> = listApp.toList()
 
 
     fun setListApp(list : List<App>){
@@ -45,7 +42,6 @@ class HomeAdapter(private val context : Context, private val listener : OnClickA
         notifyDataSetChanged()
     }
 
-    fun getListApp() : List<App> = listApp.toList()
 
     fun toggleCheckBoxAll(isCheck : Boolean){
         listApp.forEach { app ->
@@ -56,7 +52,10 @@ class HomeAdapter(private val context : Context, private val listener : OnClickA
 
     private fun updateCheckBox(item : App){
         val index = listApp.indexOf(item)
-        listApp[index].isCheck = !item.isCheck
+        val check = !item.isCheck
+        listApp[index].isCheck = check
+        listener.onClickCheckBoxApp(check)
+
     }
 
     fun removeAppList(app : App){
@@ -67,11 +66,11 @@ class HomeAdapter(private val context : Context, private val listener : OnClickA
 
     inner class HomeViewHolder(mView : View) : BaseViewHolder<App>(mView){
         private val binding = AppItemBinding.bind(mView)
-        @SuppressLint("SetTextI18n")
         override fun bind(item: App) {
                 binding.imgApp.setImageDrawable(item.photoDrawable)
                 binding.tvNameApp.text = item.name
                 binding.checkBoxApp.isChecked = listApp[listApp.indexOf(item)].isCheck
+            Log.i(TAG, "${ item.name } - ${ item.lastTimeUsed }")
 
         }
         fun setupListeners(app : App){
