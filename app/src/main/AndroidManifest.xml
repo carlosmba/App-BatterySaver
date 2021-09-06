@@ -28,10 +28,9 @@
             </intent-filter>
             <meta-data android:name="android.accessibilityservice"
                 android:resource="@xml/service_config"/>
-
         </service>
 
-        <activity android:name="com.mendozasolutions.batterysaver.MainActivity"
+        <activity android:name="com.mendozasolutions.batterysaver.ui.main.MainActivity"
                     android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

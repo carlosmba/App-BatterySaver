@@ -1,18 +1,38 @@
 package com.mendozasolutions.batterysaver.domain.services
 
 import android.accessibilityservice.AccessibilityService
+import android.accessibilityservice.AccessibilityServiceInfo
 import android.content.Intent
 import android.util.Log
 import android.view.accessibility.AccessibilityEvent
 import android.view.accessibility.AccessibilityNodeInfo
-import com.mendozasolutions.batterysaver.MainActivity
+import com.mendozasolutions.batterysaver.ui.main.MainActivity
 
 class MyAccessibilityService : AccessibilityService() {
-
     private val TAG = "MyAccessibilityService"
+    override fun onServiceConnected() {
+        super.onServiceConnected()
+        Log.i(TAG, "Conectado")
+        val info = AccessibilityServiceInfo()
+
+        info.eventTypes = AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED
+
+        info.packageNames = arrayOf("com.android.settings")
+
+        info.feedbackType = AccessibilityServiceInfo.DEFAULT
+
+        info.notificationTimeout = 100
+
+        serviceInfo = info
+
+    }
+
+
+
     override fun onAccessibilityEvent(event: AccessibilityEvent?) {
         Log.i(TAG, "Entrando onAccessibilityEvent " + event?.eventType)
-        if(AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED == event?.eventType){
+        Log.i(TAG, "isHibernation ${ConfigHibernationProcess.isHibernation}")
+        if(ConfigHibernationProcess.isHibernation && AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED == event?.eventType){
             val nodeInfo = event.source
             Log.i(TAG, "Cambio de ventana onAccessibilityEvent: nodeInfo=$nodeInfo")
             if(nodeInfo == null) return
