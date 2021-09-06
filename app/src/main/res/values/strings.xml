@@ -3,6 +3,15 @@
     <string name="title_home">Home</string>
     <string name="title_profiles">Profiles</string>
     <string name="title_settings">Settings</string>
-    <string name="btn_text_stop">Detener</string>
+    <string name="btn_text_stop">Detener %1$s apps</string>
     <string name="text_app_running">Apps en ejecución</string>
+    <string name="text_state_battery">Estado de la bateria : %1$s </string>
+    <string name="text_temperature_battery">Temperatura: %1$s°</string>
+    <string name="text_state_charge_Battery">Estado de la carga: %1$s</string>
+    <string name="text_charging_battery">Cargandose</string>
+    <string name="text_no_charging_battery">Descargandose</string>
+    <string name="text_health_good">Bueno</string>
+    <string name="text_health_dead">Muerto</string>
+    <string name="text_health_overheat">Sobrecalentamiento</string>
+    <string name="text_health_unknown">Desconocido</string>
 </resources>
